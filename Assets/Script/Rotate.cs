@@ -33,6 +33,7 @@ public class Rotate : MonoBehaviour
     private void FixedUpdate()
     {
         transform.rotation = rotate;
+
         if ((transform.position - oldPos).magnitude < rotationDrag)
             return;
         var diff = transform.position - oldPos;
@@ -40,7 +41,7 @@ public class Rotate : MonoBehaviour
 
         oldPos = transform.position;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotio);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotio);
 
         rotate = transform.rotation;
     }

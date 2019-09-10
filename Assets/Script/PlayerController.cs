@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private Grab hand;
+    [SerializeField]
     private GameObject[] cores;//完全体のコア数
     [SerializeField]
     private int defaultCore; //元々あるコア数
@@ -40,12 +42,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (target == null)
-        //    return;
+        if (target == null)
+            return;
 
-        if(Input.GetMouseButtonDown(1))
+        if(hand.HasGrab() || Input.GetMouseButtonDown(1))
         {
-            //target.GetComponent<EnemyBase>().DamageEffect();
+            target.GetComponent<EnemyBase>().DamageEffect();
             StopAllCoroutines();
             StartCoroutine("LightCore");
 
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
                 AddCore();
 
             currentCoreNum[index].GetComponentInChildren<Core>().Appear();
+            currentCoreNum[index].GetComponent<Body>().Appear();
             index++;
 
             yield return new WaitForSeconds(0.1f);

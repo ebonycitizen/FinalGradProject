@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Core
   - Line
+  - PalmTrigger
+  - ThumbTrigger
+  - FingerTrigger
   layers:
   - Default
   - TransparentFX
