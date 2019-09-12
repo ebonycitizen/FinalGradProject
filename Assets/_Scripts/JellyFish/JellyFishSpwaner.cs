@@ -4,6 +4,7 @@ using UniRx;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UniRx.Triggers;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -32,6 +33,8 @@ public class JellyFishSpwaner : MonoBehaviour
     [SerializeField] private float spawnRotationMin = 5;
 
     [SerializeField] private float spwanRotationMax = 10;
+
+    [SerializeField] private string deleteTag = "Clean";
 
     [Range(0, 5)] [SerializeField] private float rotateStartTimeMin = 0;
 
@@ -71,6 +74,14 @@ public class JellyFishSpwaner : MonoBehaviour
             jellyfishPrefab.transform.parent = parent.transform;
 
             jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition);
+
+            jellyfishPrefab.OnTriggerEnterAsObservable()
+                .Where(x => x.gameObject.tag == deleteTag)
+                .Subscribe(_ =>
+            {
+                Destroy(jellyfishPrefab.gameObject);
+                jellyFishList.Remove(jellyfishPrefab);
+            }).AddTo(this);
 
             //ここにdeleteの処理を入れないとまずいか？
             jellyFishList.Add(jellyfishPrefab);

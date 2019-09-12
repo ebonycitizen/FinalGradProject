@@ -11,9 +11,7 @@ public class JellyFish : MonoBehaviour
     [SerializeField] private float floatingTime = 10;
 
     [SerializeField] private float increasePositionY = 100;
-
-    [SerializeField] private string cleanTag = "Clean";
-
+    
     private Vector3 m_initPosition = Vector3.zero;
 
     private float m_randomRotationValue = 0;
@@ -37,18 +35,8 @@ public class JellyFish : MonoBehaviour
         m_initPosition = transform.position;
 
         Move();
-
-        ObservableUpdate();
-
+        
     }
-    private void ObservableUpdate()
-    {
-        this.OnTriggerEnterAsObservable()
-            .Where(x => x.gameObject.tag == cleanTag)
-            .Subscribe(_ => Destroy(this.gameObject))
-            .AddTo(this.gameObject);
-    }
-
     private void Move()
     {
         m_initPosition = transform.position;
