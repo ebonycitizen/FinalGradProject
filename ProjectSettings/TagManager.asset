@@ -9,6 +9,7 @@ TagManager:
   - PalmTrigger
   - ThumbTrigger
   - FingerTrigger
+  - Clean
   layers:
   - Default
   - TransparentFX
