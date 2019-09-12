@@ -51,7 +51,6 @@ public class JellyFishSpwaner : MonoBehaviour
             .Where(_ => jellyFishList.Count < maxSpwanCount)
             .Subscribe(_ => CreateJellyFish(jellyFishLists))
             .AddTo(this.transform);
-
     }
 
     private void CreateJellyFish(GameObject parent)
@@ -59,6 +58,7 @@ public class JellyFishSpwaner : MonoBehaviour
         for (int i = 0; i <= spawnCount; i++)
         {
             var randomXzIncrement = Random.insideUnitCircle * spawnRange;
+
             var randomYIncrement = Random.Range(spawnMinHeight, spawnMaxHeight);
 
             var randomSize = Random.Range(spawnScaleMin, spawnScaleMax);
@@ -73,7 +73,16 @@ public class JellyFishSpwaner : MonoBehaviour
 
             jellyfishPrefab.transform.parent = parent.transform;
 
-            jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition);
+            var shouldChangeValue = Random.Range(0, 2);
+            
+            if (shouldChangeValue == 0)
+            {
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, false);
+            }
+            else
+            {
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, true);
+            }
 
             jellyfishPrefab.OnTriggerEnterAsObservable()
                 .Where(x => x.gameObject.tag == deleteTag)
@@ -83,7 +92,8 @@ public class JellyFishSpwaner : MonoBehaviour
                 jellyFishList.Remove(jellyfishPrefab);
             }).AddTo(this);
 
-            //ここにdeleteの処理を入れないとまずいか？
+            jellyfishPrefab.GetComponent<JellyFish>().OnStart();
+            
             jellyFishList.Add(jellyfishPrefab);
         }
 
