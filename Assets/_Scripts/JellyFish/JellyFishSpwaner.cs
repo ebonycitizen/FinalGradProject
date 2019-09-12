@@ -51,7 +51,6 @@ public class JellyFishSpwaner : MonoBehaviour
             .Where(_ => jellyFishList.Count < maxSpwanCount)
             .Subscribe(_ => CreateJellyFish(jellyFishLists))
             .AddTo(this.transform);
-
     }
 
     private void CreateJellyFish(GameObject parent)
@@ -82,9 +81,7 @@ public class JellyFishSpwaner : MonoBehaviour
             }
             else
             {
-
                 jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, true);
-
             }
 
             jellyfishPrefab.OnTriggerEnterAsObservable()
