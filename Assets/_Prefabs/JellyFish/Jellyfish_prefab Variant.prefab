@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingTime: 100
   increasePositionY: 300
+  m_material: {fileID: 2100000, guid: a1abb3e6931c7174eaf072d2b0939d68, type: 2}
 --- !u!135 &3378458531008133065
 SphereCollider:
   m_ObjectHideFlags: 0
