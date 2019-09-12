@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTime: 100
-  increasePositionY: 100
-  cleanTag: Clean
+  increasePositionY: 300
 --- !u!135 &3378458531008133065
 SphereCollider:
   m_ObjectHideFlags: 0
