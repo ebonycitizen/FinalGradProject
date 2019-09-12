@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
         if(hand.HasGrab() || Input.GetMouseButtonDown(1))
         {
+            HI5.HI5_Manager.EnableRightVibration(500);
             target.GetComponent<EnemyBase>().DamageEffect();
             StopAllCoroutines();
             StartCoroutine("LightCore");
