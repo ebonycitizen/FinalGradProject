@@ -34,7 +34,6 @@ public class UrChin : MonoBehaviour
 
     void DoMove()
     {
-        Debug.Log("A");
         var randomDestination = centerRef.transform.position+ Random.insideUnitSphere* randomRange;
 
         m_nextDestination = randomDestination;
@@ -49,7 +48,6 @@ public class UrChin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(transform.position, m_nextDestination));
         if (Vector3.Distance(transform.position, m_nextDestination) < 3)
         {
             isGoal = true;

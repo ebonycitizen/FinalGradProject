@@ -4,6 +4,7 @@ using UniRx;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UniRx.Triggers;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -33,6 +34,8 @@ public class JellyFishSpwaner : MonoBehaviour
 
     [SerializeField] private float spwanRotationMax = 10;
 
+    [SerializeField] private string deleteTag = "Clean";
+
     [Range(0, 5)] [SerializeField] private float rotateStartTimeMin = 0;
 
     [Range(5, 10)] [SerializeField] private float rotateStartTimeMax = 5;
@@ -48,7 +51,6 @@ public class JellyFishSpwaner : MonoBehaviour
             .Where(_ => jellyFishList.Count < maxSpwanCount)
             .Subscribe(_ => CreateJellyFish(jellyFishLists))
             .AddTo(this.transform);
-
     }
 
     private void CreateJellyFish(GameObject parent)
@@ -56,6 +58,7 @@ public class JellyFishSpwaner : MonoBehaviour
         for (int i = 0; i <= spawnCount; i++)
         {
             var randomXzIncrement = Random.insideUnitCircle * spawnRange;
+
             var randomYIncrement = Random.Range(spawnMinHeight, spawnMaxHeight);
 
             var randomSize = Random.Range(spawnScaleMin, spawnScaleMax);
@@ -70,9 +73,27 @@ public class JellyFishSpwaner : MonoBehaviour
 
             jellyfishPrefab.transform.parent = parent.transform;
 
-            jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition);
+            var shouldChangeValue = Random.Range(0, 2);
+            
+            if (shouldChangeValue == 0)
+            {
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, false);
+            }
+            else
+            {
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, true);
+            }
 
-            //ここにdeleteの処理を入れないとまずいか？
+            jellyfishPrefab.OnTriggerEnterAsObservable()
+                .Where(x => x.gameObject.tag == deleteTag)
+                .Subscribe(_ =>
+            {
+                Destroy(jellyfishPrefab.gameObject);
+                jellyFishList.Remove(jellyfishPrefab);
+            }).AddTo(this);
+
+            jellyfishPrefab.GetComponent<JellyFish>().OnStart();
+            
             jellyFishList.Add(jellyfishPrefab);
         }
 
