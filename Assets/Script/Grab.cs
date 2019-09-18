@@ -12,6 +12,8 @@ public class Grab : MonoBehaviour
     private List<GameObject> fingers;
     private int previousFingerCount;
 
+    private RaycastHit hit;
+
     private Vector3 previousPos;
     private Vector3 velocity = Vector3.zero;
     public Vector3 GetVelocity()
@@ -47,8 +49,24 @@ public class Grab : MonoBehaviour
         return forward;
     }
 
-    private LineRenderer line;
+    public GameObject LockOn(int layer)
+    {
+        bool isHit = Physics.Raycast(palmCenter.position, forward, out hit, Mathf.Infinity, 1 << layer);
+        //bool isHit = Physics.BoxCast(palmCenter.position, Vector3.one * 0.5f, forward, out hit, palmCenter.rotation, Mathf.Infinity, 1 << layer);
 
+        if (isHit)
+            return hit.transform.gameObject;
+
+        return null;
+    }
+
+    private float rayLegth = 4;
+    public float GetRayLength()
+    {
+        return rayLegth;
+    }
+
+    private LineRenderer line;
 
     // Start is called before the first frame update
     void Start()
@@ -78,8 +96,8 @@ public class Grab : MonoBehaviour
 
         forward = (palmForward.position - palmCenter.position).normalized;
 
-        //line.SetPosition(0, palmCenter.position);
-        //line.SetPosition(1, forward * 100f);
+        line.SetPosition(0, palmCenter.position);
+        line.SetPosition(1, palmCenter.position + forward * rayLegth);
 
     }
     private void FixedUpdate()
@@ -99,4 +117,5 @@ public class Grab : MonoBehaviour
         if (other.tag == "FingerTrigger" && fingers.Contains(other.gameObject))
             fingers.Remove(other.gameObject);
     }
+
 }
