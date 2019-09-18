@@ -76,7 +76,7 @@ public class LockOnTarget : MonoBehaviour
         if (lockOnTargets.Count <= 0)
             return;
 
-        if(rightHand.HasGrab() || leftHand.HasGrab())
+        if(rightHand.HasGrab() || leftHand.HasGrab() || Input.GetKeyDown(KeyCode.Space))
         {
             HI5_Manager.EnableBothGlovesVibration(400, 400);
 

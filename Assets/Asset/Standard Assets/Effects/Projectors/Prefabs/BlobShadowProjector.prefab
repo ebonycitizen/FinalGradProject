@@ -3,12 +3,14 @@
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
-  - 4: {fileID: 400002}
-  - 119: {fileID: 11900000}
+  - component: {fileID: 400002}
+  - component: {fileID: 11900000}
+  - component: {fileID: 1165638721}
   m_Layer: 0
   m_Name: BlobShadowProjector
   m_TagString: Untagged
@@ -16,56 +18,66 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1002 &100003
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!4 &400002
 Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .75157696, y: 0, z: 0, w: .659645498}
-  m_LocalPosition: {x: 0, y: 1.87699997, z: 0}
+  m_LocalRotation: {x: 0.75157493, y: 0, z: 0, w: 0.65964776}
+  m_LocalPosition: {x: 0, y: 1.877, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1002 &400003
-EditorExtensionImpl:
-  serializedVersion: 6
+  m_LocalEulerAnglesHint: {x: 97.45398, y: 0, z: 0}
 --- !u!119 &11900000
 Projector:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 2
-  m_NearClipPlane: .100000001
-  m_FarClipPlane: 50
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 200
   m_FieldOfView: 30
   m_AspectRatio: 1
-  m_Orthographic: 0
-  m_OrthographicSize: 2
+  m_Orthographic: 1
+  m_OrthographicSize: 48.7
   m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 0
---- !u!1002 &11900001
-EditorExtensionImpl:
-  serializedVersion: 6
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100002}
-  m_IsPrefabParent: 1
---- !u!1002 &100100001
-EditorExtensionImpl:
-  serializedVersion: 6
+    m_Bits: 512
+--- !u!114 &1165638721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba8e907f2450774fb55281098f20b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fps: 8
+  frames:
+  - {fileID: 2800000, guid: 2c85e9fbc541b3f498a667d784eef71b, type: 3}
+  - {fileID: 2800000, guid: f42d152bb07a78047975e82187be71e5, type: 3}
+  - {fileID: 2800000, guid: cc46b90695996fe4eb88a2540edc240d, type: 3}
+  - {fileID: 2800000, guid: ae2db04bbcbc45b47ae2ac912956fcff, type: 3}
+  - {fileID: 2800000, guid: cbab4cfb84f3ea246b2b4d4cad865cd1, type: 3}
+  - {fileID: 2800000, guid: f862ffea3768b78489ec5d9860e25688, type: 3}
+  - {fileID: 2800000, guid: 66a6c94147112854aaa6d23a655a41d1, type: 3}
+  - {fileID: 2800000, guid: 55b3ed4c02173a247b1a3282e05c2c42, type: 3}
+  - {fileID: 2800000, guid: d1c6510ab2bee0744a09b0bf9a1db201, type: 3}
+  - {fileID: 2800000, guid: 787553220ae64b548912018e1684d2e1, type: 3}
+  - {fileID: 2800000, guid: 170406b0a3b01f34da1736707f1ef881, type: 3}
+  - {fileID: 2800000, guid: 27f0eaeb9f4808e41b304341e37baf06, type: 3}
+  - {fileID: 2800000, guid: c8b7bbac000c6834dae62b967aa12de2, type: 3}
+  - {fileID: 2800000, guid: 5238b687dd783be449d1544b8ae8209a, type: 3}
+  - {fileID: 2800000, guid: e114c798c3bd5164cb5e61268813f784, type: 3}
+  - {fileID: 2800000, guid: 56c95086e840b144292cf85c377f59f7, type: 3}
