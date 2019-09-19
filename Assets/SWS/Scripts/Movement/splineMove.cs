@@ -41,6 +41,11 @@ namespace SWS
         /// <summary>
         public bool reverse = false;
 
+
+
+        public float delayTime;
+
+
         /// <summary>
         /// Waypoint index where this object should start its path.
         /// <summary>
@@ -302,14 +307,14 @@ namespace SWS
             {
                 tween = transform.DOLocalPath(wpPos, originSpeed, pathType, pathMode)
                                  .SetAs(parms)
-                                 .SetOptions(closeLoop, lockPosition, lockRotation)
+                                 .SetOptions(closeLoop, lockPosition, lockRotation).SetDelay(delayTime)
                                  .SetLookAt(lookAhead);
             }
             else
             {
                 tween = transform.DOPath(wpPos, originSpeed, pathType, pathMode)
                                  .SetAs(parms)
-                                 .SetOptions(closeLoop, lockPosition, lockRotation)
+                                 .SetOptions(closeLoop, lockPosition, lockRotation).SetDelay(delayTime)
                                  .SetLookAt(lookAhead);
             }
 

@@ -22,6 +22,7 @@ namespace SWS
             m_Object.Update();
             //DrawDefaultInspector();
 
+            EditorGUILayout.PropertyField(m_Object.FindProperty("delayTime"));
             //draw custom variable properties by using serialized properties
             EditorGUILayout.PropertyField(m_Object.FindProperty("pathContainer"));
             EditorGUILayout.PropertyField(m_Object.FindProperty("onStart"));
