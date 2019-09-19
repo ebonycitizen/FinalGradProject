@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b4af53fc7c09b41baca11e35ee1a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomRange: 80
+  randomRange: 120
   durationToDestination: 45
   centerRef: {fileID: 0}
 --- !u!1001 &1830467592815432930

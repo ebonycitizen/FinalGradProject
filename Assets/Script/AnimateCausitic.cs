@@ -9,7 +9,7 @@ public class AnimateCausitic : MonoBehaviour
 
     private int frameIndex;
     private Projector projector;
-
+    
     // Start is called before the first frame update
     void Start()
     {

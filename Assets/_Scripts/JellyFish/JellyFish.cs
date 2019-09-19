@@ -14,6 +14,12 @@ public class JellyFish : MonoBehaviour
 
     [SerializeField] private Material m_material = null;
 
+    [SerializeField] private float intervalTime = 3;
+
+    [SerializeField] private float changeTime = 3;
+
+    [SerializeField] private float startDelayTime = 10;
+
     private Vector3 m_initPosition = Vector3.zero;
 
     private float m_randomRotationValue = 0;
@@ -47,8 +53,10 @@ public class JellyFish : MonoBehaviour
     {
         if (m_shouldChangeColor)
         {
-            var sequenceMove = DOTween.Sequence().AppendInterval(10).Append(m_material.DOColor(Color.red, 10))
-                .Append(m_material.DOColor(m_defaultColor, 10));
+            var sequenceMove = DOTween.Sequence().AppendInterval(startDelayTime).Append(m_material.DOColor(Color.red, changeTime))
+                .AppendCallback(()=> gameObject.layer = 0).Append(m_material.DOColor(m_defaultColor, changeTime))
+                .AppendInterval(intervalTime)
+                .AppendCallback(() => gameObject.layer = LayerMask.NameToLayer("Enemy"));
 
             sequenceMove.Play();
         }

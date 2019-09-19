@@ -43,7 +43,7 @@ namespace BLINDED_AM_ME{
 		public bool hasRandomStartingPoints = false;
 
 
-		[Range(0.0f, 5.0f)]
+		[Range(0.0f, 500.0f)]
 		public float pathWidth = 0.0f;
 
 
