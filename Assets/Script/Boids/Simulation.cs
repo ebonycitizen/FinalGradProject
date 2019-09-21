@@ -11,6 +11,9 @@ public class Simulation : MonoBehaviour
     [SerializeField]
     GameObject boidPrefab;
 
+    //[SerializeField]
+    //GameObject goalPrefab;
+
     [SerializeField]
     Param param;
 
@@ -28,7 +31,12 @@ public class Simulation : MonoBehaviour
         boid.simulation = this;
         boid.param = param;
         boid.wallPos = transform.position;
+
+        //boid.goalPrefab = goalPrefab;
+
         boids_.Add(boid);
+
+        
     }
 
     void RemoveBoid()

@@ -9,6 +9,8 @@ public class Boid : MonoBehaviour
     public Param param { get; set; }
     public Vector3 pos { get; private set; }
 
+    //public GameObject goalPrefab { get; set; }
+
     public Vector3 wallPos { get; set; }
     public Vector3 velocity { get; private set; }
     Vector3 accel = Vector3.zero;
@@ -36,6 +38,8 @@ public class Boid : MonoBehaviour
 
         // 近隣の個体の中心に移動する
         UpdateCohesion();
+
+        //UpdateGoal();
 
         // 上記 4 つの結果更新された accel を velocity に反映して位置を動かす
         UpdateMove();
@@ -131,6 +135,11 @@ public class Boid : MonoBehaviour
         averagePos /= neighbors.Count;
 
         accel += (averagePos - pos) * param.cohesionWeight;
+    }
+
+    void UpdateGoal()
+    {
+        //accel += (goalPrefab.transform.position - this.transform.position) * 2;
     }
 
     void UpdateMove()
