@@ -54,8 +54,9 @@ public class JellyFish : MonoBehaviour
         if (m_shouldChangeColor)
         {
             var sequenceMove = DOTween.Sequence().AppendInterval(startDelayTime).Append(m_material.DOColor(Color.red, changeTime))
-                .AppendCallback(()=> gameObject.layer = 0).Append(m_material.DOColor(m_defaultColor, changeTime))
+                .AppendCallback(()=> gameObject.layer = 0)
                 .AppendInterval(intervalTime)
+                .Append(m_material.DOColor(m_defaultColor, changeTime))
                 .AppendCallback(() => gameObject.layer = LayerMask.NameToLayer("Enemy"));
 
             sequenceMove.Play();
