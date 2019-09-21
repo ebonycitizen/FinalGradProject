@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTime: 100
-  increasePositionY: 300
+  increasePositionY: 450
   m_material: {fileID: 2100000, guid: f9130e5eb3aed8e4f9bef4c72650fa9a, type: 2}
   intervalTime: 3
   changeTime: 3
