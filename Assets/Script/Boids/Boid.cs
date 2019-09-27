@@ -9,7 +9,7 @@ public class Boid : MonoBehaviour
     public Param param { get; set; }
     public Vector3 pos { get; private set; }
 
-    //public GameObject goalPrefab { get; set; }
+    public GameObject goalPrefab { get; set; }
 
     public Vector3 wallPos { get; set; }
     public Vector3 velocity { get; private set; }
@@ -78,12 +78,12 @@ public class Boid : MonoBehaviour
 
         var scale = param.wallScale * 0.5f;
         accel +=
-            CalcAccelAgainstWall(-scale - pos.x + wallPos.x, Vector3.right) +
-            CalcAccelAgainstWall(-scale - pos.y + wallPos.y, Vector3.up) +
-            CalcAccelAgainstWall(-scale - pos.z + wallPos.z, Vector3.forward) +
-            CalcAccelAgainstWall(+scale - pos.x + wallPos.x, Vector3.left) +
-            CalcAccelAgainstWall(+scale - pos.y + wallPos.y, Vector3.down) +
-            CalcAccelAgainstWall(+scale - pos.z + wallPos.z, Vector3.back);
+            CalcAccelAgainstWall(-scale.x - pos.x + wallPos.x, Vector3.right) +
+            CalcAccelAgainstWall(-scale.y - pos.y + wallPos.y, Vector3.up) +
+            CalcAccelAgainstWall(-scale.z - pos.z + wallPos.z, Vector3.forward) +
+            CalcAccelAgainstWall(+scale.x - pos.x + wallPos.x, Vector3.left) +
+            CalcAccelAgainstWall(+scale.y - pos.y + wallPos.y, Vector3.down) +
+            CalcAccelAgainstWall(+scale.z - pos.z + wallPos.z, Vector3.back);
     }
 
     Vector3 CalcAccelAgainstWall(float distance, Vector3 dir)

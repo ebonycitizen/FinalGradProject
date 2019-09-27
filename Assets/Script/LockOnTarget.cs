@@ -21,6 +21,9 @@ public class LockOnTarget : MonoBehaviour
     private int targetLayer;
 
     [SerializeField]
+    private float atkSpeedRequire;
+
+    [SerializeField]
     private GameObject lockOnCursorPrefab;
 
     private List<GameObject> lockOnTargets;
@@ -76,7 +79,8 @@ public class LockOnTarget : MonoBehaviour
         if (lockOnTargets.Count <= 0)
             return;
 
-        if(rightHand.HasGrab() || leftHand.HasGrab() || Input.GetKeyDown(KeyCode.Space))
+        if (rightHand.GetVelocity().magnitude >= atkSpeedRequire || 
+            leftHand.GetVelocity().magnitude >= atkSpeedRequire)
         {
             HI5_Manager.EnableBothGlovesVibration(400, 400);
 

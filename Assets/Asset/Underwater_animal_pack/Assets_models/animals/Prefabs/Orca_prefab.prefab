@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d39fb93b5ebcd4891f91dc28e2259d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fowardPos: {fileID: 0}
+  forwardPos: {fileID: 0}
 --- !u!114 &3867168638021468191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   distance: 7
+  hitPrefab: {fileID: 0}
 --- !u!54 &1181792473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -484,7 +485,7 @@ CapsuleCollider:
   m_Radius: 0.61
   m_Height: 3.65
   m_Direction: 2
-  m_Center: {x: 0, y: -0.3, z: -0.27}
+  m_Center: {x: 0, y: 0, z: -0.27}
 --- !u!1 &1498054286558658
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642982669050990}
   m_LocalRotation: {x: -0.50743973, y: -0.49244794, z: 0.50743973, w: 0.49244794}
-  m_LocalPosition: {x: -0.000000051103402, y: 0.35, z: 0.6}
+  m_LocalPosition: {x: 0, y: 0.49, z: 0.6}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4027466776534940}
@@ -759,7 +760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911534379082114}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.052691437, z: 1.7691095}
+  m_LocalPosition: {x: 0.000000051103402, y: 0.19269145, z: 1.7691095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4529709763428152}
@@ -783,7 +784,6 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6a0521be52a1c2845ac37a2250d4e900, type: 2}
-  - {fileID: 2100000, guid: 284133f2292787f4b99c329236db941f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

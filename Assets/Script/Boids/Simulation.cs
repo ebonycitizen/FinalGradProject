@@ -11,11 +11,16 @@ public class Simulation : MonoBehaviour
     [SerializeField]
     GameObject boidPrefab;
 
-    //[SerializeField]
-    //GameObject goalPrefab;
+    [SerializeField]
+    GameObject goalPrefab;
 
     [SerializeField]
     Param param;
+
+    [SerializeField]
+    Transform spawnPosition;
+    [SerializeField]
+    float spawnRadius;
 
     List<Boid> boids_ = new List<Boid>();
     public ReadOnlyCollection<Boid> boids
@@ -25,18 +30,18 @@ public class Simulation : MonoBehaviour
 
     void AddBoid()
     {
-        var go = Instantiate(boidPrefab, Random.insideUnitSphere+transform.position, Random.rotation);
+        var go = Instantiate(boidPrefab, Random.insideUnitSphere * spawnRadius + spawnPosition.position, Random.rotation);
         go.transform.SetParent(transform);
         var boid = go.GetComponent<Boid>();
         boid.simulation = this;
         boid.param = param;
         boid.wallPos = transform.position;
 
-        //boid.goalPrefab = goalPrefab;
+        boid.goalPrefab = goalPrefab;
 
         boids_.Add(boid);
 
-        
+
     }
 
     void RemoveBoid()
@@ -47,6 +52,11 @@ public class Simulation : MonoBehaviour
         var boid = boids_[lastIndex];
         Destroy(boid.gameObject);
         boids_.RemoveAt(lastIndex);
+    }
+
+    private void Start()
+    {
+        AddBoid();
     }
 
     void Update()
@@ -65,6 +75,6 @@ public class Simulation : MonoBehaviour
     {
         if (!param) return;
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, Vector3.one * param.wallScale);
+        Gizmos.DrawWireCube(transform.position, param.wallScale);
     }
 }

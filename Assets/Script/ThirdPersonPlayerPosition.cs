@@ -10,16 +10,20 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
     [SerializeField]
     private float distance;
 
+    [SerializeField]
+    private GameObject hitPrefab;
+
     private ContactPoint[] c;
 
+    private Rigidbody rb;
     private GameObject collideTarget;
     private Vector3 targetPos;
-    private Vector3 targetPosOld;
+    private Vector3 oldPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -28,13 +32,40 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
         
     }
 
+    public Vector3 GetTargetPos()
+    {
+        return targetPos;
+    }
+
     private void FixedUpdate()
     {
         targetPos = Quaternion.Euler(target.eulerAngles) * transform.forward * distance;
-
-
+        
         transform.localPosition = Vector3.Slerp(transform.localPosition, targetPos, Time.deltaTime * 2f);
+
+        var h = (transform.localPosition.x - oldPos.x) * 200;
+        var v = (transform.localPosition.y - oldPos.y) * 200;
+
+        rb.AddRelativeTorque(new Vector3(0, h, -h));
+        rb.AddRelativeTorque(new Vector3(v, 0, 0));
+        var left = transform.TransformVector(Vector3.left);
+        var horiLeft = new Vector3(left.x, 0, left.z).normalized;
+        rb.AddTorque(Vector3.Cross(left, horiLeft) * 4f);
+
+        var forward = transform.TransformVector(Vector3.forward);
+        var horiForward = new Vector3(forward.x, 0, forward.z).normalized;
+        rb.AddTorque(Vector3.Cross(forward, horiForward) * 4f);
+
+        oldPos = transform.localPosition;
+
         //targetPosOld = targetPos;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ContactPoint[] c = collision.contacts;
+
+        Instantiate(hitPrefab, c[0].point, Quaternion.identity);
     }
 
     private void OnCollisionStay(Collision collision)

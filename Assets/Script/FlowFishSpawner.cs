@@ -8,6 +8,9 @@ public class FlowFishSpawner : MonoBehaviour
     private GameObject fishPrefab;
 
     [SerializeField]
+    private Vector3 direction;
+
+    [SerializeField]
     private int maxParticle;
 
     [SerializeField]
@@ -40,6 +43,8 @@ public class FlowFishSpawner : MonoBehaviour
                 float z = Random.Range(transform.position.z - spawnBoundSize.z / 2, transform.position.z + spawnBoundSize.z / 2);
 
                 fish[i] = Instantiate(fishPrefab, new Vector3(x, y, z), fishPrefab.transform.rotation, transform);
+
+                var flowFish = fish[i].GetComponent<FlowFish>().direction = direction;
 
                 float lifeTime = Random.Range(lifeTimeMin, lifeTimeMax);
 

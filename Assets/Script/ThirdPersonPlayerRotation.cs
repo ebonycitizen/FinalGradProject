@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThirdPersonPlayerRotation : MonoBehaviour
 {
     [SerializeField]
-    private Transform fowardPos;
+    private Transform forwardPos;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,6 @@ public class ThirdPersonPlayerRotation : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(fowardPos.forward);
+        transform.rotation = Quaternion.LookRotation(forwardPos.forward);
     }
 }

@@ -51,7 +51,8 @@ public class Grab : MonoBehaviour
 
     public GameObject LockOn(int layer)
     {
-        bool isHit = Physics.Raycast(palmCenter.position, forward, out hit, Mathf.Infinity, 1 << layer);
+        Debug.DrawRay(palmCenter.position, forward * rayLegth * 15);
+        bool isHit = Physics.Raycast(palmCenter.position, forward, out hit, rayLegth * 15f, 1 << layer);
         //bool isHit = Physics.BoxCast(palmCenter.position, Vector3.one * 0.5f, forward, out hit, palmCenter.rotation, Mathf.Infinity, 1 << layer);
 
         if (isHit)
@@ -60,7 +61,7 @@ public class Grab : MonoBehaviour
         return null;
     }
 
-    private float rayLegth = 4;
+    private float rayLegth = 10;
     public float GetRayLength()
     {
         return rayLegth;
