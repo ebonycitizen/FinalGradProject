@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23444656600357970}
   - component: {fileID: 2404575848573699310}
   - component: {fileID: 3429741499912656118}
+  - component: {fileID: 3265652088860296656}
   m_Layer: 12
   m_Name: BoidFlow
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103657446341984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8ca67afae1db964783368e20946d78a, type: 3}
   m_Name: 
@@ -107,6 +108,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0773157, y: 1.4196023, z: 4.187719}
   m_Center: {x: 0.030578924, y: 0.39578816, z: -1.141346}
+--- !u!114 &3265652088860296656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103657446341984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53657e503d7a4738b0a9fa634fc1b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
+  avgFlockHeading: {x: 0, y: 0, z: 0}
+  avgAvoidanceHeading: {x: 0, y: 0, z: 0}
+  centreOfFlockmates: {x: 0, y: 0, z: 0}
+  numPerceivedFlockmates: 0
 --- !u!1 &95542023500337492
 GameObject:
   m_ObjectHideFlags: 0

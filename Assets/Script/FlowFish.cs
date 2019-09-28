@@ -6,10 +6,8 @@ public class FlowFish : MonoBehaviour
 {
     public Vector3 direction { get; set; }
 
-    [SerializeField]
-    private float speedMin;
-    [SerializeField]
-    private float speedMax;
+    public float speedMin { get; set; }
+    public float speedMax { get; set; }
 
     private float speed;
     private float posY;
@@ -28,7 +26,6 @@ public class FlowFish : MonoBehaviour
     void Update()
     {
         Vector3 diff = transform.position - oldPos;
-        Debug.Log(diff);
         oldPos = transform.position;
 
         elapsedTime += Time.deltaTime;

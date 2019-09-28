@@ -39,7 +39,7 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetPos = Quaternion.Euler(target.eulerAngles) * transform.forward * distance;
+        targetPos = Quaternion.Euler(target.localEulerAngles) * transform.forward * distance;
         
         transform.localPosition = Vector3.Slerp(transform.localPosition, targetPos, Time.deltaTime * 2f);
 
