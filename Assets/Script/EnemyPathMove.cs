@@ -10,24 +10,33 @@ public class EnemyPathMove : MonoBehaviour
     [SerializeField]
     private float delayTime;
     [SerializeField]
-    private Transform[] paths;
+    private Transform pathRef;
+    [SerializeField]
+    private Ease ease;
+
     // Start is called before the first frame update
     void Start()
     {
-        Vector3[] movePath = new Vector3[paths.Length];
+        Vector3[] movePath = new Vector3[pathRef.childCount-1];
 
-        for(int i=0;i<paths.Length;i++)
+        for(int i=0;i< movePath.Length;i++)
         {
-            movePath[i] = paths[i].position;
+            movePath[i] = pathRef.GetChild(i).localPosition;
         }
 
         transform.DOLocalPath(movePath, moveTime, PathType.CatmullRom)
-           .SetEase(Ease.Linear).SetLookAt(0.05f, Vector3.forward).SetDelay(delayTime).OnComplete(() => Destroy(gameObject)); ;
+           .SetEase(ease).SetLookAt(0.05f, Vector3.forward).SetDelay(delayTime)
+           .OnComplete(() => DestroyObj()).GotoWaypoint(0,true);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void DestroyObj()
+    {
+        //Destroy(gameObject);
     }
 }

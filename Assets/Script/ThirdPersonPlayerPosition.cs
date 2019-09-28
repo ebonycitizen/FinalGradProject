@@ -8,6 +8,12 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
     private Transform target;
 
     [SerializeField]
+    private Transform forwardPos;
+    private Vector3 oldForwardPos = Vector3.zero;
+
+        
+
+    [SerializeField]
     private float distance;
 
     [SerializeField]
@@ -39,12 +45,24 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetPos = Quaternion.Euler(target.eulerAngles) * transform.forward * distance;
+        targetPos = Quaternion.Euler(target.localEulerAngles) * Vector3.forward * distance;
         
         transform.localPosition = Vector3.Slerp(transform.localPosition, targetPos, Time.deltaTime * 2f);
 
+        var d = forwardPos.position - oldForwardPos;
+        if (d.magnitude > 0)
+        {
+            var q = Quaternion.LookRotation(d);
+
+            if (q.eulerAngles != Vector3.zero)
+                transform.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, transform.eulerAngles.z);
+        }
+        oldForwardPos = forwardPos.position;
+
         var h = (transform.localPosition.x - oldPos.x) * 200;
         var v = (transform.localPosition.y - oldPos.y) * 200;
+
+
 
         rb.AddRelativeTorque(new Vector3(0, h, -h));
         rb.AddRelativeTorque(new Vector3(v, 0, 0));
@@ -57,8 +75,6 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
         rb.AddTorque(Vector3.Cross(forward, horiForward) * 4f);
 
         oldPos = transform.localPosition;
-
-        //targetPosOld = targetPos;
     }
 
     private void OnCollisionEnter(Collision collision)
