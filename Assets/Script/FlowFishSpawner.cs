@@ -21,6 +21,11 @@ public class FlowFishSpawner : MonoBehaviour
     private float lifeTimeMax;
 
     [SerializeField]
+    private float speedMin;
+    [SerializeField]
+    private float speedMax;
+
+    [SerializeField]
     private Vector3 spawnBoundSize;
 
     private void OnEnable()
@@ -44,7 +49,11 @@ public class FlowFishSpawner : MonoBehaviour
 
                 fish[i] = Instantiate(fishPrefab, new Vector3(x, y, z), fishPrefab.transform.rotation, transform);
 
-                var flowFish = fish[i].GetComponent<FlowFish>().direction = direction;
+                var flowFish = fish[i].GetComponent<FlowFish>();
+
+                flowFish.direction = direction;
+                flowFish.speedMin = speedMin;
+                flowFish.speedMax = speedMax;
 
                 float lifeTime = Random.Range(lifeTimeMin, lifeTimeMax);
 

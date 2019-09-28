@@ -14,10 +14,16 @@ public class ThirdPersonAttack : MonoBehaviour
     private Transform target;
     [SerializeField]
     private float rotateSec;
+    [SerializeField]
+    private float moveDist;
 
     private ThirdPersonPlayerPosition thirdPerson;
 
     private bool isAttack;
+    public bool GetIsAttack()
+    {
+        return isAttack;
+    }
 
     private IEnumerator Rotate(Vector3 from)
     {
@@ -32,13 +38,19 @@ public class ThirdPersonAttack : MonoBehaviour
 
         Sequence s = DOTween.Sequence();
         s.Join(target.DORotate(rotation, rotateSec, RotateMode.FastBeyond360))
-            .Join(target.DOLocalMove(position + target.forward * 5f, rotateSec))
+            .Join(target.DOLocalMove(position + target.forward * moveDist, rotateSec))
             .AppendCallback(() => transform.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f));
 
         s.Play();
         
         yield return new WaitForSeconds(rotateSec * 2f);
         isAttack = false;
+    }
+
+    public void Attack()
+    {
+        Vector3 from = target.eulerAngles;
+        StartCoroutine("Rotate", from);
     }
 
     // Start is called before the first frame update
@@ -50,11 +62,9 @@ public class ThirdPersonAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isAttack && (rightHand.HasGrab() || leftHand.HasGrab()))
+        if(!isAttack && (rightHand.HasGrab() || leftHand.HasGrab()) || Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 from = target.eulerAngles;
-            StartCoroutine("Rotate", from);
-
+            Attack();
         }
     }
 }

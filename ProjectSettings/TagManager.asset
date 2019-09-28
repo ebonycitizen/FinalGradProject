@@ -22,11 +22,11 @@ TagManager:
   - PostProcessing
   - IgnoreProjection
   - Player
-  - Fog
+  - AttackTarget
   - Enemy
-  - Particle
+  - 
   - LockOn
-  - Weed
+  - 
   - Fish
   - Stage
   - 
