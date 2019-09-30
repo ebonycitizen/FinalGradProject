@@ -6,6 +6,8 @@ public class BoidManager : MonoBehaviour {
 
     [SerializeField]
     private Transform target;
+    [SerializeField]
+    private Transform spawner;
 
     const int threadGroupSize = 1024;
 
@@ -14,10 +16,15 @@ public class BoidManager : MonoBehaviour {
     BoidN[] boids;
 
     void Start () {
-        boids = FindObjectsOfType<BoidN> ();
-        foreach (BoidN b in boids) {
-            b.Initialize (settings, target);
+        boids = new BoidN[spawner.childCount];
+        for (int i = 0; i < boids.Length; i++)
+        {
+            boids[i] = spawner.GetChild(i).GetComponent<BoidN>();
+            boids[i].Initialize(settings, target);
         }
+        //boids = FindObjectsOfType<BoidN> ();
+        //foreach (BoidN b in boids) {
+        //b.Initialize (settings, target);
 
     }
 

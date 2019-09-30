@@ -5,6 +5,9 @@ using UnityEngine;
 public class ThirdPersonPlayerPosition : MonoBehaviour
 {
     [SerializeField]
+    private Transform forwardPos;
+
+    [SerializeField]
     private Transform target;
 
     [SerializeField]
@@ -19,6 +22,7 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
     private GameObject collideTarget;
     private Vector3 targetPos;
     private Vector3 oldPos;
+    private Vector3 oldForwardPos = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +43,35 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetPos = Quaternion.Euler(target.localEulerAngles) * transform.forward * distance;
-        
-        transform.localPosition = Vector3.Slerp(transform.localPosition, targetPos, Time.deltaTime * 2f);
+        MovePos();
 
+        LookForward();
+
+        Roll();
+    }
+
+    private void MovePos()
+    {
+        targetPos = Quaternion.Euler(target.localEulerAngles) * transform.forward * distance;
+
+        transform.localPosition = Vector3.Slerp(transform.localPosition, targetPos, Time.deltaTime * 2f);
+    }
+
+    private void LookForward()
+    {
+        var d = forwardPos.position - oldForwardPos;
+        if (d.magnitude > 0)
+        {
+            var q = Quaternion.LookRotation(d);
+
+            if (q.eulerAngles != Vector3.zero)
+                transform.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, transform.eulerAngles.z);
+        }
+        oldForwardPos = forwardPos.position;
+    }
+
+    private void Roll()
+    {
         var h = (transform.localPosition.x - oldPos.x) * 200;
         var v = (transform.localPosition.y - oldPos.y) * 200;
 
@@ -57,8 +86,6 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
         rb.AddTorque(Vector3.Cross(forward, horiForward) * 4f);
 
         oldPos = transform.localPosition;
-
-        //targetPosOld = targetPos;
     }
 
     private void OnCollisionEnter(Collision collision)
