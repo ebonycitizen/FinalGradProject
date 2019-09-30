@@ -34,10 +34,10 @@ public class ThirdPersonAttack : MonoBehaviour
         if (from.z > 180)
             rotation = Vector3.zero;
         else
-             rotation = Vector3.forward * 360;
-
+             rotation = transform.forward.normalized * 360;
+        Debug.Log(rotation);
         Sequence s = DOTween.Sequence();
-        s.Join(target.DORotate(rotation, rotateSec, RotateMode.FastBeyond360))
+        s.Join(target.DOLocalRotate(rotation, rotateSec, RotateMode.FastBeyond360))
             .Join(target.DOLocalMove(position + target.forward * moveDist, rotateSec))
             .AppendCallback(() => transform.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f));
 
@@ -62,7 +62,7 @@ public class ThirdPersonAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isAttack && (rightHand.HasGrab() || leftHand.HasGrab()) || Input.GetKeyDown(KeyCode.Space))
+        if(!isAttack && (rightHand.HasGrab() || leftHand.HasGrab() || Input.GetKeyDown(KeyCode.Space)))
         {
             Attack();
         }

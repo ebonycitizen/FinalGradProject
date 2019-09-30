@@ -72,8 +72,9 @@ public class Grab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasGrab = false;
         fingers = new List<GameObject>();
-        previousFingerCount = 0;
+        previousFingerCount = fingers.Count;
         previousPos = transform.position;
 
         line = GetComponent<LineRenderer>();
@@ -90,7 +91,7 @@ public class Grab : MonoBehaviour
 
         hasGrab = false;
 
-        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 0)
+        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 1)
             hasGrab = true;
 
         previousFingerCount = fingers.Count;
