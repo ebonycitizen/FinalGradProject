@@ -383,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529709763428152}
   - component: {fileID: 111646085008533868}
-  - component: {fileID: 1181792469}
+  - component: {fileID: 6217399406843821492}
   - component: {fileID: 3867168638021468191}
   - component: {fileID: 1181792473}
   - component: {fileID: 2945340732128144413}
@@ -428,7 +428,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &1181792469
+--- !u!114 &6217399406843821492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -454,7 +454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  forwardPos: {fileID: 0}
   distance: 7
   hitPrefab: {fileID: 0}
 --- !u!54 &1181792473
