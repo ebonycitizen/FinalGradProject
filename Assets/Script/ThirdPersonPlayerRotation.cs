@@ -21,7 +21,19 @@ public class ThirdPersonPlayerRotation : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(forwardPos.position-oldForwardPos);
+        LookForward();
+    }
+
+    private void LookForward()
+    {
+        var d = forwardPos.position - oldForwardPos;
+        if (d.magnitude > 0)
+        {
+            var q = Quaternion.LookRotation(d);
+
+            if (q.eulerAngles != Vector3.zero)
+                transform.localEulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, 0);
+        }
         oldForwardPos = forwardPos.position;
     }
 }

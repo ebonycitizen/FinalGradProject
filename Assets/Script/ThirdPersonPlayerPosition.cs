@@ -45,7 +45,7 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
     {
         MovePos();
 
-        LookForward();
+        //LookForward();
 
         Roll();
     }
@@ -65,7 +65,7 @@ public class ThirdPersonPlayerPosition : MonoBehaviour
             var q = Quaternion.LookRotation(d);
 
             if (q.eulerAngles != Vector3.zero)
-                transform.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, transform.eulerAngles.z);
+                transform.localEulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, transform.eulerAngles.z);
         }
         oldForwardPos = forwardPos.position;
     }

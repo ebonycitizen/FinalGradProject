@@ -13,6 +13,8 @@ public class ThirdPersonAttack : MonoBehaviour
     [SerializeField]
     private Transform target;
     [SerializeField]
+    private Transform forward;
+    [SerializeField]
     private float rotateSec;
     [SerializeField]
     private float moveDist;
@@ -35,10 +37,12 @@ public class ThirdPersonAttack : MonoBehaviour
             rotation = Vector3.zero;
         else
              rotation = transform.forward.normalized * 360;
+
+
         Debug.Log(rotation);
         Sequence s = DOTween.Sequence();
         s.Join(target.DOLocalRotate(rotation, rotateSec, RotateMode.FastBeyond360))
-            .Join(target.DOLocalMove(position + target.forward * moveDist, rotateSec))
+            .Join(target.DOLocalMove(position + forward.forward * moveDist, rotateSec))
             .AppendCallback(() => transform.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f));
 
         s.Play();
