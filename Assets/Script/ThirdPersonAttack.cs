@@ -33,18 +33,18 @@ public class ThirdPersonAttack : MonoBehaviour
         Vector3 rotation = Vector3.zero;
         Vector3 position = target.localPosition;
 
-        if (from.z > 180)
-            rotation = Vector3.zero;
-        else
-             rotation = transform.forward.normalized * 360;
+        //if (from.z > 180)
+        //    rotation = Vector3.zero;
+        //else
+            rotation = Vector3.forward * 360;//transform.forward.normalized * 360;
 
 
         Debug.Log(rotation);
         Sequence s = DOTween.Sequence();
         s.Join(target.DOLocalRotate(rotation, rotateSec, RotateMode.FastBeyond360))
-            .Join(target.DOLocalMove(position + forward.forward * moveDist, rotateSec))
-            .AppendCallback(() => transform.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f));
-
+            .Join(target.DOLocalMove(Vector3.forward * moveDist, rotateSec))
+            .AppendCallback(() => target.DOLocalMove(Vector3.zero, rotateSec).SetEase(Ease.OutQuad));
+        //target.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f)
         s.Play();
         
         yield return new WaitForSeconds(rotateSec * 2f);
