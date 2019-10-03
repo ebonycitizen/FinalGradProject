@@ -11,9 +11,9 @@ public class ThirdPersonAttack : MonoBehaviour
     private Grab leftHand;
 
     [SerializeField]
-    private Transform target;
+    private Transform rotationRef;
     [SerializeField]
-    private Transform forward;
+    private Transform target;
     [SerializeField]
     private float rotateSec;
     [SerializeField]
@@ -27,34 +27,29 @@ public class ThirdPersonAttack : MonoBehaviour
         return isAttack;
     }
 
-    private IEnumerator Rotate(Vector3 from)
+    private IEnumerator Rotate()
     {
         isAttack = true;
         Vector3 rotation = Vector3.zero;
         Vector3 position = target.localPosition;
 
-        //if (from.z > 180)
-        //    rotation = Vector3.zero;
-        //else
-            rotation = Vector3.forward * 360;//transform.forward.normalized * 360;
+        rotation = Vector3.forward * 360;
 
-
-        Debug.Log(rotation);
         Sequence s = DOTween.Sequence();
-        s.Join(target.DOLocalRotate(rotation, rotateSec, RotateMode.FastBeyond360))
+        s.Join(target.DOBlendableLocalRotateBy(rotation, rotateSec, RotateMode.FastBeyond360))
             .Join(target.DOLocalMove(Vector3.forward * moveDist, rotateSec))
             .AppendCallback(() => target.DOLocalMove(Vector3.zero, rotateSec).SetEase(Ease.OutQuad));
-        //target.localPosition = Vector3.Slerp(transform.localPosition, thirdPerson.GetTargetPos(), Time.deltaTime * 2f)
+
         s.Play();
-        
+
         yield return new WaitForSeconds(rotateSec * 2f);
         isAttack = false;
     }
 
     public void Attack()
     {
-        Vector3 from = target.eulerAngles;
-        StartCoroutine("Rotate", from);
+        Vector3 from = rotationRef.eulerAngles;
+        StartCoroutine("Rotate");
     }
 
     // Start is called before the first frame update

@@ -38,7 +38,7 @@ public class FlowFishSpawner : MonoBehaviour
         while(true)
         {
             if (transform.childCount >= maxParticle)
-                yield return null;
+                yield break;
 
             GameObject[] fish = new GameObject[rateOverTime];
             for(int i = 0;i < rateOverTime;i++)
@@ -57,10 +57,10 @@ public class FlowFishSpawner : MonoBehaviour
 
                 float lifeTime = Random.Range(lifeTimeMin, lifeTimeMax);
 
-                Destroy(fish[i], lifeTime);
+                //Destroy(fish[i], lifeTime);
             }
 
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
         }
     }
 
