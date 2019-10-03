@@ -73,15 +73,17 @@ public class JellyFishSpwaner : MonoBehaviour
 
             jellyfishPrefab.transform.parent = parent.transform;
 
-            var shouldChangeValue = Random.Range(0, 2);
-            
+            var shouldChangeValue = 0;
+
+            var randomStartValue = Random.value;
+
             if (shouldChangeValue == 0)
             {
-                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, false);
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, false,randomStartValue);
             }
             else
             {
-                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, true);
+                jellyfishPrefab.SetUp(randomSize, randomRotation, randomRotateStartTime, bornPosition, true, randomStartValue);
             }
 
             jellyfishPrefab.OnTriggerEnterAsObservable()
@@ -93,7 +95,7 @@ public class JellyFishSpwaner : MonoBehaviour
             }).AddTo(this);
 
             jellyfishPrefab.GetComponent<JellyFish>().OnStart();
-            
+
             jellyFishList.Add(jellyfishPrefab);
         }
 

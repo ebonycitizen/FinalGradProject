@@ -30,8 +30,10 @@ public class JellyFish : MonoBehaviour
 
     private bool m_shouldChangeColor = false;
 
-    public void SetUp(float size, float rotationValue, float rotateStartTime, Vector3 initPosition, bool shouldChangeColor)
+    public void SetUp(float size, float rotationValue, float rotateStartTime, Vector3 initPosition, bool shouldChangeColor, float randomStartTime)
     {
+        Invoke("PlaySwimAnimation", randomStartTime);
+
         m_randomRotationValue = rotationValue;
 
         transform.localScale *= size;
@@ -48,13 +50,17 @@ public class JellyFish : MonoBehaviour
             m_defaultColor = m_material.color;
         }
     }
-    
+
+    private void PlaySwimAnimation()
+    {
+        GetComponent<Animator>().SetBool("Play", true);
+    }
     public void OnStart()
     {
         if (m_shouldChangeColor)
         {
             var sequenceMove = DOTween.Sequence().AppendInterval(startDelayTime).Append(m_material.DOColor(Color.red, changeTime))
-                .AppendCallback(()=> gameObject.layer = 0)
+                .AppendCallback(() => gameObject.layer = 0)
                 .AppendInterval(intervalTime)
                 .Append(m_material.DOColor(m_defaultColor, changeTime))
                 .AppendCallback(() => gameObject.layer = LayerMask.NameToLayer("Enemy"));
