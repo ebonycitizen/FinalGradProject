@@ -22,9 +22,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6478202168208763922}
   - component: {fileID: 6478202168208763949}
-  - component: {fileID: 8837522322018446824}
+  - component: {fileID: 2694929246191376172}
   m_Layer: 16
-  m_Name: NeonFishFlow 1
+  m_Name: NeonFishFlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd22f40f0223e964387c3abeeecaf3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &8837522322018446824
+--- !u!65 &2694929246191376172
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,8 +68,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6329486, y: 1, z: 2.9652362}
-  m_Center: {x: 0.008814822, y: 0, z: -1.7089701}
+  m_Size: {x: 0.6329486, y: 1.4354095, z: 4.680773}
+  m_Center: {x: 0.008814812, y: 0.00907135, z: -2.5667386}
 --- !u!1001 &6478202169461251531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 4583599481023659973, guid: f92e7422410e4644a91a1959b8bdfc11,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7758945622074274349, guid: f92e7422410e4644a91a1959b8bdfc11, type: 3}

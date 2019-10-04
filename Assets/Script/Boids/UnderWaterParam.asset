@@ -15,9 +15,9 @@ MonoBehaviour:
   initSpeed: 2
   minSpeed: 10
   maxSpeed: 15
-  neighborDistance: 97.51
-  neighborFov: 90
-  separationWeight: 51.29
+  neighborDistance: 100
+  neighborFov: 4
+  separationWeight: 200
   wallScale: {x: 150, y: 150, z: 150}
   wallDistance: 3
   wallWeight: 10

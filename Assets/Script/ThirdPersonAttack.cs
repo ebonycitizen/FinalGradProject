@@ -48,7 +48,6 @@ public class ThirdPersonAttack : MonoBehaviour
 
     public void Attack()
     {
-        Vector3 from = rotationRef.eulerAngles;
         StartCoroutine("Rotate");
     }
 

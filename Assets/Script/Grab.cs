@@ -49,10 +49,11 @@ public class Grab : MonoBehaviour
         return forward;
     }
 
-    public GameObject LockOn(int layer)
+    public GameObject LockOn(string layer)
     {
+        int layerMask = LayerMask.NameToLayer(layer);
         Debug.DrawRay(palmCenter.position, forward * rayLegth * 15);
-        bool isHit = Physics.Raycast(palmCenter.position, forward, out hit, rayLegth * 15f, 1 << layer);
+        bool isHit = Physics.Raycast(palmCenter.position, forward, out hit, rayLegth * 15f, 1 << layerMask);
         //bool isHit = Physics.BoxCast(palmCenter.position, Vector3.one * 0.5f, forward, out hit, palmCenter.rotation, Mathf.Infinity, 1 << layer);
 
         if (isHit)
@@ -91,7 +92,7 @@ public class Grab : MonoBehaviour
 
         hasGrab = false;
 
-        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 1)
+        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 0)
             hasGrab = true;
 
         previousFingerCount = fingers.Count;

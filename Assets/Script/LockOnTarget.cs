@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HI5;
+using Valve.VR;
 
 public class LockOnTarget : MonoBehaviour
 {
+    public SteamVR_Action_Boolean GrabAction;
+
+    [SerializeField]
+    private bool useCamera;
+    [SerializeField]
+    private bool useHand;
+
+    [SerializeField]
+    private RayFromCamera rayCamera;
     [SerializeField]
     private Grab rightHand;
     [SerializeField]
     private Grab leftHand;
 
+    [SerializeField]
+    private GameObject cameraCursor;
     [SerializeField]
     private GameObject rightCursor;
     [SerializeField]
@@ -18,7 +30,7 @@ public class LockOnTarget : MonoBehaviour
     [SerializeField]
     private int lockNumMax = 8;//ロックオンできる最大数
     [SerializeField]
-    private int targetLayer;
+    private string targetLayer;
 
     [SerializeField]
     private float atkSpeedRequire;
@@ -31,18 +43,25 @@ public class LockOnTarget : MonoBehaviour
     private void Awake()
     {
         lockOnTargets = new List<GameObject>();
+
+        cameraCursor.SetActive(false);
+        rightCursor.SetActive(false);
+        leftCursor.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(useCamera)
+            cameraCursor.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShowCursor();
+        if (useHand)
+            ShowCursor();
+
         LockOn();
         Attack();
     }
@@ -69,9 +88,17 @@ public class LockOnTarget : MonoBehaviour
 
         GameObject rightTarget = rightHand.LockOn(targetLayer);
         GameObject leftTarget = leftHand.LockOn(targetLayer);
+        GameObject cameraTarget = rayCamera.LockOn(targetLayer);
 
-        LockTarget(rightTarget);
-        LockTarget(leftTarget);
+        if (useHand)
+        {
+            LockTarget(rightTarget);
+            LockTarget(leftTarget);
+        }
+        if(useCamera)
+        {
+            LockTarget(cameraTarget);
+        }
     }
 
     private void Attack()
@@ -80,12 +107,12 @@ public class LockOnTarget : MonoBehaviour
             return;
 
         if (rightHand.GetVelocity().magnitude >= atkSpeedRequire || 
-            leftHand.GetVelocity().magnitude >= atkSpeedRequire)
+            leftHand.GetVelocity().magnitude >= atkSpeedRequire || GrabAction.stateDown)
         {
-            HI5_Manager.EnableBothGlovesVibration(400, 400);
+            //HI5_Manager.EnableBothGlovesVibration(400, 400);
 
             foreach (GameObject obj in lockOnTargets)
-                DestroyObject(obj);
+                Destroy(obj);
 
             lockOnTargets.Clear();
         }      

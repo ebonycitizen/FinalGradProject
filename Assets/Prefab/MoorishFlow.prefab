@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8689087482136463401}
   - component: {fileID: 8637645891391022532}
-  - component: {fileID: 5455952984618817603}
+  - component: {fileID: 5559341034488915550}
   m_Layer: 16
   m_Name: MoorishFlow
   m_TagString: Untagged
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd22f40f0223e964387c3abeeecaf3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5455952984618817603
+--- !u!65 &5559341034488915550
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +137,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7157425688240540483, guid: 8777944dc047d3d40afaee996536c949,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3871699646225401077, guid: 8777944dc047d3d40afaee996536c949,
         type: 3}
       propertyPath: m_Bones.Array.data[0]
@@ -222,7 +227,8 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 7836406993843309316}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8378129606750967140, guid: 8777944dc047d3d40afaee996536c949, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8777944dc047d3d40afaee996536c949, type: 3}
 --- !u!1 &8541221901637105090 stripped
 GameObject:

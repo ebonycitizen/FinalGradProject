@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class FishPingpong : MonoBehaviour
 {
-
     private float pingPongTime = 2.5f;
     // Start is called before the first frame update
     void Start()
