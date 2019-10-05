@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HI5;
 
 public class Grab : MonoBehaviour
 {
@@ -79,11 +80,16 @@ public class Grab : MonoBehaviour
         previousPos = transform.position;
 
         line = GetComponent<LineRenderer>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!HI5_Manager.GetGloveStatus().IsGloveAvailable(HI5.Hand.LEFT) &&
+              !HI5_Manager.GetGloveStatus().IsGloveAvailable(HI5.Hand.RIGHT))
+            return;
+        
         if (fingers.Count == 0)
             hasRelease = false;
 
@@ -92,7 +98,7 @@ public class Grab : MonoBehaviour
 
         hasGrab = false;
 
-        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 0)
+        if (previousFingerCount != fingers.Count && previousFingerCount == 0 && fingers.Count > 2)
             hasGrab = true;
 
         previousFingerCount = fingers.Count;
@@ -105,8 +111,12 @@ public class Grab : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        velocity = (transform.position - previousPos) / Time.fixedDeltaTime;
-        previousPos = transform.position;
+        if (!HI5_Manager.GetGloveStatus().IsGloveAvailable(HI5.Hand.LEFT) &&
+            !HI5_Manager.GetGloveStatus().IsGloveAvailable(HI5.Hand.RIGHT))
+            return;
+
+        velocity = (transform.parent.localPosition - previousPos) / Time.fixedDeltaTime;
+        previousPos = transform.parent.localPosition;
     }
 
     private void OnTriggerEnter(Collider other)

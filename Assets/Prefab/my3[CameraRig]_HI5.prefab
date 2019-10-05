@@ -7213,7 +7213,7 @@ GameObject:
   - component: {fileID: 8832058692443654045}
   - component: {fileID: 4768262505369103828}
   - component: {fileID: 5226209382472491676}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: my3[CameraRig]_HI5
   m_TagString: Untagged
   m_Icon: {fileID: 0}

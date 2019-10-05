@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using HI5;
 using Valve.VR;
 
@@ -28,6 +29,9 @@ public class LockOnTarget : MonoBehaviour
     private GameObject leftCursor;
 
     [SerializeField]
+    private GameObject deadEffect;
+
+    [SerializeField]
     private int lockNumMax = 8;//ロックオンできる最大数
     [SerializeField]
     private string targetLayer;
@@ -39,6 +43,7 @@ public class LockOnTarget : MonoBehaviour
     private GameObject lockOnCursorPrefab;
 
     private List<GameObject> lockOnTargets;
+    private ThirdPersonAttack player;
 
     private void Awake()
     {
@@ -52,7 +57,9 @@ public class LockOnTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(useCamera)
+        player = Object.FindObjectOfType<ThirdPersonAttack>();
+
+        if (useCamera)
             cameraCursor.SetActive(true);
     }
 
@@ -110,11 +117,23 @@ public class LockOnTarget : MonoBehaviour
             leftHand.GetVelocity().magnitude >= atkSpeedRequire || GrabAction.stateDown)
         {
             //HI5_Manager.EnableBothGlovesVibration(400, 400);
+            player.Attack(0);
 
-            foreach (GameObject obj in lockOnTargets)
-                Destroy(obj);
-
-            lockOnTargets.Clear();
+            DestroyTarget();
         }      
+    }
+
+    private void DestroyTarget()
+    {
+        foreach (GameObject obj in lockOnTargets)
+        {
+            if (obj == null)
+                continue;
+            obj.GetComponent<Collider>().enabled = false;
+            Instantiate(deadEffect, obj.transform);
+            obj.transform.DOScale(Vector3.zero, 0.5f);
+            Destroy(obj, 1);
+        }
+        lockOnTargets.Clear();
     }
 }

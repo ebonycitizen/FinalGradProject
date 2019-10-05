@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RayFromCamera : MonoBehaviour
 {
-    private float rayLegth = 10;
+    private float rayLegth = 300;
     private RaycastHit hit;
 
     // Start is called before the first frame update
@@ -23,8 +23,8 @@ public class RayFromCamera : MonoBehaviour
     public GameObject LockOn(string layer)
     {
         int layerMask = LayerMask.NameToLayer(layer);
-        Debug.DrawRay(transform.position, transform.forward * rayLegth * 15);
-        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, rayLegth * 15f, 1 << layerMask);
+        Debug.DrawRay(transform.position, transform.forward * rayLegth);
+        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, rayLegth , 1 << layerMask);
 
         if (isHit)
             return hit.transform.gameObject;

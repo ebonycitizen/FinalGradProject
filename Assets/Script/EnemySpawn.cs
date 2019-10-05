@@ -10,13 +10,23 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField]
     private float moveTime;
     [SerializeField]
-    private float delayTime;
+    private float destroyTime;
+
+    public float GetFadeTime()
+    {
+        return fadeTime;
+    }
+
+    public float GetMoveTime()
+    {
+        return moveTime;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
 
-        transform.DOLocalMoveZ(transform.position.z-50.0f, moveTime).SetDelay(delayTime);
+        
     }
 
     // Update is called once per frame

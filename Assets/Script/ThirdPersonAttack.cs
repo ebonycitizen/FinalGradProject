@@ -11,8 +11,6 @@ public class ThirdPersonAttack : MonoBehaviour
     private Grab leftHand;
 
     [SerializeField]
-    private Transform rotationRef;
-    [SerializeField]
     private Transform target;
     [SerializeField]
     private float rotateSec;
@@ -27,7 +25,7 @@ public class ThirdPersonAttack : MonoBehaviour
         return isAttack;
     }
 
-    private IEnumerator Rotate()
+    private IEnumerator Rotate(float atkDist)
     {
         isAttack = true;
         Vector3 rotation = Vector3.zero;
@@ -37,7 +35,7 @@ public class ThirdPersonAttack : MonoBehaviour
 
         Sequence s = DOTween.Sequence();
         s.Join(target.DOBlendableLocalRotateBy(rotation, rotateSec, RotateMode.FastBeyond360))
-            .Join(target.DOLocalMove(Vector3.forward * moveDist, rotateSec))
+            .Join(target.DOLocalMove(Vector3.forward * atkDist, rotateSec))
             .AppendCallback(() => target.DOLocalMove(Vector3.zero, rotateSec).SetEase(Ease.OutQuad));
 
         s.Play();
@@ -48,7 +46,11 @@ public class ThirdPersonAttack : MonoBehaviour
 
     public void Attack()
     {
-        StartCoroutine("Rotate");
+        StartCoroutine("Rotate", moveDist);
+    }
+    public void Attack(float dist)
+    {
+        StartCoroutine("Rotate", dist);
     }
 
     // Start is called before the first frame update
