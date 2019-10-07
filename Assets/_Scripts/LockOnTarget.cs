@@ -123,6 +123,11 @@ public class LockOnTarget : MonoBehaviour
         }      
     }
 
+    IEnumerator Blastoff()
+    {
+        yield return null;
+    }
+
     private void DestroyTarget()
     {
         foreach (GameObject obj in lockOnTargets)
