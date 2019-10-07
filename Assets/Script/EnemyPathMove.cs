@@ -17,16 +17,16 @@ public class EnemyPathMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3[] movePath = new Vector3[pathRef.childCount-1];
+        Vector3[] movePath = new Vector3[pathRef.childCount];
 
-        for(int i=0;i< movePath.Length;i++)
+        for (int i = 0; i < movePath.Length; i++)
         {
-            movePath[i] = pathRef.GetChild(i).localPosition;
+            movePath[i] = pathRef.GetChild(i).position;
         }
 
-        transform.DOLocalPath(movePath, moveTime, PathType.CatmullRom)
-           .SetEase(ease).SetDelay(delayTime).SetLookAt(0.05f, Vector3.forward)
-           .OnComplete(() => DestroyObj()).GotoWaypoint(0,true);
+        transform.DOPath(movePath, moveTime, PathType.CatmullRom)
+       .SetEase(ease).SetDelay(delayTime)
+       .OnComplete(() => DestroyObj()).GotoWaypoint(1, true);
     }
 
     // Update is called once per frame
