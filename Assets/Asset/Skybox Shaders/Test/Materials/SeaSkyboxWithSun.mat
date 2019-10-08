@@ -31,11 +31,11 @@ Material:
     - _SunAltitude: 38
     - _SunAzimuth: 20
     - _SunBeta: 1
-    - _SunIntensity: 2
+    - _SunIntensity: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _SkyColor1: {r: 0.8443396, g: 0.99313265, b: 1, a: 0}
-    - _SkyColor2: {r: 0.14117648, g: 0.8235294, b: 0.90588236, a: 0}
+    - _SkyColor1: {r: 0.6556604, g: 0.982783, b: 1, a: 0}
+    - _SkyColor2: {r: 0.25, g: 0.9192308, b: 1, a: 0}
     - _SkyColor3: {r: 0.02745098, g: 0.15686275, b: 0.18039216, a: 1}
     - _SunColor: {r: 1, g: 0.99, b: 0.87, a: 1}
     - _SunVector: {r: 0.26951554, g: 0.6156615, b: 0.74048793, a: 0}
