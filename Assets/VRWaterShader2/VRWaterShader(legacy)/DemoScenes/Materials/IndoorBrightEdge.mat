@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: IndoorBrightEdge
   m_Shader: {fileID: 4800000, guid: cac876d9b34f2744faf997042029ff69, type: 3}
   m_ShaderKeywords: _BLENDENABLETHIS_ON _CUBEMAPUSECUSTOMCUBEMAP_ON _SECONDARYENABLETHIS_ON
@@ -85,7 +86,7 @@ Material:
     m_Floats:
     - _BaseisasEmission: 0
     - _BlendBlendAlpha: 1
-    - _BlendBlendDistance: 0.5
+    - _BlendBlendDistance: 2.06
     - _BlendEnableThis: 1
     - _BumpScale: 1
     - _CubemapFresnel: 0
@@ -102,23 +103,23 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverallGloss: 0.834
-    - _OverallMetallic: 1
-    - _OverallNormalStrength: 0.156
-    - _OverallWaveHeight: 0.57
+    - _OverallGloss: 0.308
+    - _OverallMetallic: 0.07
+    - _OverallNormalStrength: 1
+    - _OverallWaveHeight: 5.7
     - _Parallax: 0.02
-    - _PrimaryHeightStrength: 0.5
-    - _SSRefractionDecaydistance: 5
-    - _SSRefractionRefractionFresnel: 2
-    - _SSRefractionStrength: 0.1
+    - _PrimaryHeightStrength: 0.041
+    - _SSRefractionDecaydistance: 87.6
+    - _SSRefractionRefractionFresnel: 5
+    - _SSRefractionStrength: 0.12
     - _SecondaryEnableThis: 1
-    - _SecondaryHeightStrength: 0.5
+    - _SecondaryHeightStrength: 0.062
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TessellationFarCap: 50
     - _TessellationNearCap: 0
-    - _TessellationStrength: 10
+    - _TessellationStrength: 8.7
     - _UVSec: 0
     - _UseCustomCubemap: 0
     - _ZWrite: 1
@@ -130,5 +131,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CubemapBaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PrimaryUandVspeedZWNotused: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _SecondaryUandVspeedZWNotused: {r: -0.05, g: -0.075, b: 0, a: 0}
+    - _PrimaryUandVspeedZWNotused: {r: 0.05, g: 0.01, b: 1, a: 0}
+    - _SecondaryUandVspeedZWNotused: {r: -0.05, g: -0.1, b: 0, a: 0}
