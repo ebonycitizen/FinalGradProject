@@ -118,7 +118,7 @@ public class LockOnTarget : MonoBehaviour
 
     private void Attack()
     {
-        if (lockOnTargets.Count <= 0 && !canAtack)
+        if (lockOnTargets.Count <= 0 || !canAtack)
             return;
 
         if (rightHand.GetVelocity().magnitude >= atkSpeedRequire ||

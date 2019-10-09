@@ -20,9 +20,9 @@ public class EnemyFade : MonoBehaviour
         fadeTime = spawn.GetFadeTime();
 
         Material mat = GetComponent<MeshRenderer>().material;
-        DOTween.ToAlpha(() => mat.color, color => mat.color = color, 0, fadeTime).From().SetDelay(delayTime);
+        mat.DOFade(0, fadeTime).From();
 
-        transform.DOLocalMoveZ(transform.localPosition.z + 50.0f, moveTime).From().SetDelay(delayTime);
+        transform.DOLocalMoveY(transform.localPosition.y - 50.0f, moveTime).From().SetDelay(delayTime).SetEase(Ease.OutQuad);
     }
 
     // Update is called once per frame
