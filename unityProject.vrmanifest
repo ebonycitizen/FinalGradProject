@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.underwater.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\game\\Documents\\FinalGradProject\\actions.json",
+      "action_manifest_path": "D:\\Unity\\FinalGrad\\actions.json",
       "strings": {
         "en_us": {
           "name": "Underwater [Testing]"
