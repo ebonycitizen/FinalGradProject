@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: UnderWaterParam
   m_EditorClassIdentifier: 
   initSpeed: 2
-  minSpeed: 10
-  maxSpeed: 15
-  neighborDistance: 100
-  neighborFov: 4
-  separationWeight: 200
-  wallScale: {x: 150, y: 150, z: 150}
+  minSpeed: 5
+  maxSpeed: 7
+  neighborDistance: 243.41
+  neighborFov: 40
+  separationWeight: 30
+  wallScale: {x: 50, y: 50, z: 50}
   wallDistance: 3
   wallWeight: 10
   alignmentWeight: 2
