@@ -21,8 +21,8 @@
 				{
 					//"DisableBatching" = "True"
 				}
-
-				ZTest NotEqual
+				ZWrite Off
+				ZTest LEqual
 
 				CGPROGRAM
 				#pragma vertex vert
@@ -82,8 +82,13 @@
 				heightFactor = heightFactor * pow(input.vertex.y, _HeightFactor);
 
 				// apply wave animation
-				output.pos.z += sin(_WaveSpeed*windSample)*_WaveAmp * heightFactor;
-				output.pos.x += cos(_WaveSpeed*windSample)*_WaveAmp * heightFactor;
+
+				float4 pos = input.vertex;
+				pos.z += sin(_WaveSpeed*windSample)*_WaveAmp * heightFactor * 0.1;
+				pos.x += cos(_WaveSpeed*windSample)*_WaveAmp * heightFactor * 0.1;
+				output.pos = UnityObjectToClipPos(pos);
+
+//				output.pos.x += cos(_WaveSpeed*windSample)*_WaveAmp * heightFactor;
 
 				return output;
 			}

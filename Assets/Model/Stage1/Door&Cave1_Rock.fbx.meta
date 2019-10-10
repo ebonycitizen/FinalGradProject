@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e6bcee14c7458346b56851d2f0914e2
+guid: 2a80da4aced06bd4aa25197dec02e3d7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface68
+    4300000: Door_Cave_1_Rock
   externalObjects: {}
   materials:
     importMaterials: 1

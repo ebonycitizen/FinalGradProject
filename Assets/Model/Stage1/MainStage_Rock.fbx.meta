@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e62b39da072ad9a46b1f30742c1b6b27
+guid: 2beaa448ef7071e4e94ba341bdb1ebf2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Door_Cave_1
+    4300000: MainStage_Rock
   externalObjects: {}
   materials:
     importMaterials: 1
