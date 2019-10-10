@@ -69,6 +69,11 @@ public class LockOnTarget : MonoBehaviour
 
         if (useCamera)
             cameraCursor.SetActive(true);
+        if(useHand)
+        {
+            rightCursor.SetActive(true);
+            leftCursor.SetActive(true);
+        }
     }
 
     // Update is called once per frame

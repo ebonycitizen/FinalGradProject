@@ -63,7 +63,7 @@ public class Grab : MonoBehaviour
         return null;
     }
 
-    private float rayLegth = 10;
+    private float rayLegth = 20;
     public float GetRayLength()
     {
         return rayLegth;
@@ -106,7 +106,7 @@ public class Grab : MonoBehaviour
         forward = (palmForward.position - palmCenter.position).normalized;
 
         line.SetPosition(0, palmCenter.position);
-        line.SetPosition(1, palmCenter.position + forward * rayLegth);
+        line.SetPosition(1, palmCenter.position + forward * 10);
 
     }
     private void FixedUpdate()
