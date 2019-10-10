@@ -8,11 +8,11 @@ public class FixedScreenScaleObject : MonoBehaviour {
 	/// </summary>
 	[SerializeField]
 	private float _baseScale = INVAILD_BASE_SCALE;
-
 	private void Start() {
 		if (_baseScale != INVAILD_BASE_SCALE) return;
 		// カメラからの距離が1のときのスケール値を算出
 		_baseScale = transform.localScale.x / GetDistance();
+
 	}
 
 	/// <summary>
@@ -22,7 +22,11 @@ public class FixedScreenScaleObject : MonoBehaviour {
 		return (transform.position - Camera.main.transform.position).magnitude;
 	}
 
-	private void LateUpdate() {
-		transform.localScale = Vector3.one * _baseScale * GetDistance();
-	}
+	private void Update() {
+        if (transform.parent.localScale.x <= 0f)
+            return;
+		transform.localScale = Vector3.one * _baseScale / transform.parent.localScale.x * GetDistance();
+        Debug.Log(transform.parent.localScale.x);
+
+    }
 }

@@ -45,6 +45,14 @@ public class LockOnTarget : MonoBehaviour
     private List<GameObject> lockOnTargets;
     private ThirdPersonAttack player;
 
+    [SerializeField]
+    private GameObject missilePrefab;
+    [SerializeField]
+    private Transform missileInitPos;
+
+    private bool canAtack=true;
+    
+
     private void Awake()
     {
         lockOnTargets = new List<GameObject>();
@@ -110,21 +118,57 @@ public class LockOnTarget : MonoBehaviour
 
     private void Attack()
     {
-        if (lockOnTargets.Count <= 0)
+        if (lockOnTargets.Count <= 0 || !canAtack)
             return;
 
-        if (rightHand.GetVelocity().magnitude >= atkSpeedRequire || 
+        if (rightHand.GetVelocity().magnitude >= atkSpeedRequire ||
             leftHand.GetVelocity().magnitude >= atkSpeedRequire || GrabAction.stateDown)
         {
+            canAtack = false;
+
             //HI5_Manager.EnableBothGlovesVibration(400, 400);
             player.Attack(0);
 
-            DestroyTarget();
-        }      
+            StartCoroutine("Blastoff");
+
+            //DestroyTarget();
+        }
     }
 
     IEnumerator Blastoff()
     {
+        int directionX = 1;
+
+        foreach (GameObject obj in lockOnTargets)
+        {
+            if (obj == null)
+                continue;
+
+            GameObject missile = Instantiate(missilePrefab, missileInitPos);
+            missile.GetComponent<Missile>().initMissile(obj, directionX);
+
+            obj.GetComponent<Collider>().enabled = false;
+
+            StartCoroutine("DeadEffect", obj);
+
+            directionX *= -1;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        DestroyTarget();
+        canAtack = true;
+
+        yield return null;
+    }
+
+    IEnumerator DeadEffect(GameObject obj)
+    {
+        yield return new WaitForSeconds(0.3f);
+        
+        Instantiate(deadEffect, obj.transform);
+        obj.transform.DOScale(Vector3.zero, 0.5f);
+        Destroy(obj, 1);
         yield return null;
     }
 
