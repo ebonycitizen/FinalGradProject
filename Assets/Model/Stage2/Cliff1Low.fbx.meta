@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 588f7a0c419138d48993652892635259
+guid: 5ee90ad69db50fc4ea0c2f0fe62e2621
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Default OBJ.005
+    2100000: Default OBJ.009
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Wall4.000
+    4300000: Cliff.001
   externalObjects: {}
   materials:
     importMaterials: 1
