@@ -22,7 +22,7 @@ public class EnemyFade : MonoBehaviour
         Material mat = GetComponent<MeshRenderer>().material;
         mat.DOFade(0, fadeTime).From();
 
-        transform.DOLocalMoveY(transform.localPosition.y - 50.0f, moveTime).From().SetDelay(delayTime).SetEase(Ease.OutQuad);
+        transform.DOLocalMoveY(transform.localPosition.y - 20.0f, moveTime).From().SetDelay(delayTime).SetEase(Ease.OutQuad);
     }
 
     // Update is called once per frame
