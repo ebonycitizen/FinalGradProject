@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class RayFromCamera : MonoBehaviour
 {
-    private float rayLegth = 300;
+    [SerializeField]
+    private Transform rayPos;
+
+    private float rayLegth = 240;
     private RaycastHit hit;
+    private Vector3 rayDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +26,10 @@ public class RayFromCamera : MonoBehaviour
 
     public GameObject LockOn(string layer)
     {
+        rayDirection = (rayPos.position - transform.position).normalized;
         int layerMask = LayerMask.NameToLayer(layer);
-        Debug.DrawRay(transform.position, transform.forward * rayLegth);
-        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, rayLegth , 1 << layerMask);
+        Debug.DrawRay(transform.position, rayDirection * rayLegth);
+        bool isHit = Physics.Raycast(transform.position, rayDirection, out hit, rayLegth , 1 << layerMask);
 
         if (isHit)
             return hit.transform.gameObject;

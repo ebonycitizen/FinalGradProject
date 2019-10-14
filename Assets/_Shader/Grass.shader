@@ -19,9 +19,9 @@
 			{
 				Tags
 				{
-					//"DisableBatching" = "True"
+					"DisableBatching" = "True"
 				}
-				ZWrite Off
+				//ZWrite Off
 				ZTest LEqual
 
 				CGPROGRAM
@@ -79,7 +79,7 @@
 				// 0 animation below _HeightCutoff
 				float heightFactor = input.vertex.y > _HeightCutoff;
 				// make animation stronger with height
-				heightFactor = heightFactor * pow(input.vertex.y, _HeightFactor);
+				heightFactor = heightFactor * (input.vertex.y * _HeightFactor);//pow(input.vertex.y, _HeightFactor);
 
 				// apply wave animation
 
@@ -106,6 +106,7 @@
 
 				float3 rgb = _LightColor0.rgb * lighting * _Color.rgb;
 				return float4(rgb, 1.0);
+
 			}
 
 			ENDCG

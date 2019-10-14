@@ -1,27 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Cinemachine
+public class TEST : MonoBehaviour
 {
-    public class Test : MonoBehaviour
+    // Start is called before the first frame update
+    void Start()
     {
-        [SerializeField]
-        CinemachineDollyCart cart;
-        [SerializeField]
-        private float speed;
+        Invoke("LoadA", 1);
+    }
+    void LoadA()
+    {
+        SceneManager.UnloadSceneAsync("Tutorial");
+        SceneManager.LoadScene("Stage1", LoadSceneMode.Additive);
+    }
 
-        float posOld;
-        // Start is called before the first frame update
-        void Start()
-        {
-            posOld = cart.m_Position;
-        }
-
-        // Update is called once per frame
-        void FixedUpdate()
-        {
-            cart.m_Position += speed * Time.fixedDeltaTime;
-        }
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
