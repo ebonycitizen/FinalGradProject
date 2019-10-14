@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 1, y: 1}
     m_Floats:
     - _HeightCutoff: 0.05
-    - _HeightFactor: 0.5
+    - _HeightFactor: 1
     - _WaveAmp: 1
     - _WaveSpeed: 3
     m_Colors:

@@ -69,7 +69,7 @@ public class Grab : MonoBehaviour
         return rayLegth;
     }
 
-    private LineRenderer line;
+    //private LineRenderer line;
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +79,7 @@ public class Grab : MonoBehaviour
         previousFingerCount = fingers.Count;
         previousPos = transform.position;
 
-        line = GetComponent<LineRenderer>();
+        //line = GetComponent<LineRenderer>();
 
     }
 
@@ -105,8 +105,8 @@ public class Grab : MonoBehaviour
 
         forward = (palmForward.position - palmCenter.position).normalized;
 
-        line.SetPosition(0, palmCenter.position);
-        line.SetPosition(1, palmCenter.position + forward * 10);
+        //line.SetPosition(0, palmCenter.position);
+        //line.SetPosition(1, palmCenter.position + forward * 10);
 
     }
     private void FixedUpdate()

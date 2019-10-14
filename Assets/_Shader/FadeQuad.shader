@@ -52,7 +52,7 @@
             {
                 // sample the texture
                 fixed4 col = _Color;
-				col.a = min(1.0, max(0.0, 0.005 * i.uv.z));
+				col.a = min(1.0, max(0.0, 0.006 * i.uv.z));
 
 
 //				fixed4 col = fixed4(1,1,1,0);
