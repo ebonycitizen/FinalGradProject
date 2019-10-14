@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Type
-{
-
-}
-
 public enum ColorType
 {
 
@@ -15,14 +10,13 @@ public enum ColorType
 
 public class EnemyBase : MonoBehaviour
 {
-    protected Type type;
     protected ColorType color;
 
     // Start is called before the first frame update
-    protected virtual void Start(){ }
+    protected virtual void Start() { }
 
     // Update is called once per frame
-    protected virtual void Update(){ }
+    protected virtual void Update() { }
 
     protected virtual void Movement() { }
     protected virtual void Attack() { }

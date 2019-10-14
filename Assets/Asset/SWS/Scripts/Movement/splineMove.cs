@@ -162,7 +162,7 @@ namespace SWS
         {
             none,
             all
-			/*
+            /*
             x,
             y,
             z
@@ -190,6 +190,10 @@ namespace SWS
         private int[] rndArray;
 
 
+        [SerializeField] private bool isLookAtTarget;
+
+        [SerializeField] private GameObject lookAtTarget;
+
         //check for automatic initialization
         void Start()
         {
@@ -197,7 +201,11 @@ namespace SWS
                 StartMove();
         }
 
-
+        void Update()
+        {
+            if (isLookAtTarget)
+                transform.LookAt(lookAtTarget.transform);
+        }
         /// <summary>
         /// Starts movement. Can be called from other scripts to allow start delay.
         /// <summary>
@@ -287,7 +295,7 @@ namespace SWS
                     parms.OnStepComplete(ReachedEnd);
 
                 Vector3 startPos = wpPos[0];
-                if (localType == LocalType.toPath) 
+                if (localType == LocalType.toPath)
                     startPos = pathContainer.transform.TransformPoint(startPos);
                 transform.position = startPos;
 
@@ -296,7 +304,7 @@ namespace SWS
             }
 
             if (pathMode == DG.Tweening.PathMode.Ignore &&
-				waypointRotation != RotationType.none)
+                waypointRotation != RotationType.none)
             {
                 if (rotationTarget == null)
                     rotationTarget = transform;
@@ -433,11 +441,11 @@ namespace SWS
             }
             else
             {
-                if(reverse) targetPoint = waypoints.Length - currentPoint - 1;
+                if (reverse) targetPoint = waypoints.Length - currentPoint - 1;
 
                 for (int i = 0; i <= targetPoint; i++)
                     currentDist -= tweenPath.changeValue.wpLengths[i];
-				
+
                 pathLength = tweenPath.changeValue.wpLengths[targetPoint + 1];
             }
 
@@ -457,11 +465,11 @@ namespace SWS
         //filters the rotation passed in depending on the RotationType we selected
         private void ApplyWaypointRotation(Quaternion rotation)
         {
-			rotationTarget.rotation = rotation;
+            rotationTarget.rotation = rotation;
 
-			//limit rotation to specific axis
-			//IN DEVELOPMENT
-			/*
+            //limit rotation to specific axis
+            //IN DEVELOPMENT
+            /*
             switch (waypointRotation)
             {
 				case RotationType.all:
@@ -582,7 +590,10 @@ namespace SWS
             tween.GotoWaypoint(index, true);
         }
 
-
+        public void Destory()
+        {
+            Destroy(this.gameObject);
+        }
         /// <summary>
         /// Pauses the current movement routine for a defined amount of time.
         /// <summary>
@@ -610,7 +621,7 @@ namespace SWS
         /// <summary>
         public void Resume()
         {
-			StopCoroutine(Wait());
+            StopCoroutine(Wait());
             if (tween != null)
                 tween.Play();
         }
@@ -626,9 +637,9 @@ namespace SWS
             //calculate opposite remaining path time i.e. if we're at 80% progress in one direction,
             //this then returns 20% time value when starting from the opposite direction and so on
             float timeRemaining = 0f;
-            if(tween != null)
+            if (tween != null)
                 timeRemaining = 1 - tween.ElapsedPercentage(false);
-            
+
             //invert starting point from current waypoint
             startPoint = waypoints.Length - 1 - currentPoint;
             StartMove();
