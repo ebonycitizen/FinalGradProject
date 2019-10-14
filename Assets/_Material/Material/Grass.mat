@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _RampTex:
-        m_Texture: {fileID: 2800000, guid: b0a15bfb44f8cd342a92e00d7c2d809b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3fbc801e1a288fa42a41442f7a861529, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindTex:

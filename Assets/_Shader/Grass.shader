@@ -19,9 +19,9 @@
 			{
 				Tags
 				{
-					//"DisableBatching" = "True"
+					"DisableBatching" = "True"
 				}
-				ZWrite Off
+				//ZWrite Off
 				ZTest LEqual
 
 				CGPROGRAM
